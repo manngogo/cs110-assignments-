@@ -1,0 +1,45 @@
+1. Provide a high-level description (ie, using minimal amount of technical jargon) of each problem
+in no more than 100 words.
+
+Problem 1 (Quadratic Equation): I had to change the order of the variables and if statements just so they would appear properly, but after that, it worked fine. 
+
+Problem 2 (Wind Chill): Used my previously done wind chill equation and altered it to have control flow.
+
+Problem 3 (Day of the Week): Used what I made last week and then added an if elif else branch to say the day of the week depending on the number it was. 
+
+Problem 4 (Six-sided Die): Wasn't too difficult, had an issue with the upper bound in the equation so I changed it to a 7 and then the rest was pretty easy, just trying to make it all line up (die faces)
+
+Problem 5 (Playing Card): Had to change it to variable instead of just writeln, but after that the output looked good and printed out on the same line with spaces in between each word which was good
+
+Problem 6 (Dragon Curve): I started with "F", reversing and swapping the sequence
+
+Problem 7 (Greatest Common Divisor): Had the hardest time with the equation, but once I figured it out, it worked out great, no issues.
+
+Problem 8 (Root Finding): Had to readjust the equations multiple times for them to work with no errors, so it took me a while and it was kind of difficult. However, the errors that popped up usually told me exactly what to fix.
+
+Problem 9 (Sum of Powers): Took me some time to think on the equation so it took me a few tries, but everything else wasn't so difficult once the sum value turned out okay. When I inputted the problems in the pdf and got the right answer, I was happy. 
+
+Problem 10 (Factorial Function): I used what I knew in the previous problem and just used * instead. Had to also differentiate between ni = 0 or ni = 1, so I just did an if and statement that seperated them but I don't think it works on negative numbers.
+
+Problem 11 (Fibonacci Function): Had to know what the Fibonnaci sequence was first, but after knowing that, it wasn't too bad for me. I just printed the result. It took me some time to understand what this sequence was in the first place but after i understood it was i + b = c, b + c = d, indefinitely it made it so much easier
+
+Problem 12 (Primality Test): Just needed to look up what makes a prime number, then made my own if elif equation based on that.
+
+Problem 13 (Counting Primes): It starts at 2, multiply j until you get to n. A prime number is a number that is divisible by 1 and itself. So I made it so that it would find the prime numbers in itself, and then print out how many of those there were. 
+
+Problem 14 (Perfect Numbers): Used pretty much the same logic and code from counting primes. I just changed it so it was perfect numbers instead of primes. 
+
+Problem 15 (Ramanujan Numbers): The TA helped a lot with this one, I had no clue what to really do until he explained. He helped with the starting part, and I was able to finish it on my own.
+
+2. Did you receive help from anyone? List their names, status (classmate, course staff, other), and
+the nature of help received.
+
+Name                   Status           Help Received
+----                   ------           -------------
+TA                     Staff            Helped with problem 15's equation (loop)
+...                    ...              ...
+
+3. List any other comments here. Feel free to provide any feedback on how much you learned from
+doing the assignment, and whether you enjoyed doing it.
+I learned a lot from the assignment, but I didn't really enjoy it. Some were numbers I didn't really know before so I had to do a lot of research if I didn't want to get help from the TA for it and tried to do it on my own. 
+I did understand the basic ideas of loops and control flow, but a lot of the things otherwise it was asking me for I didn't know anything about. 
