@@ -1,45 +1,32 @@
-1. Provide a high-level description (ie, using minimal amount of technical jargon) of each problem
-in no more than 100 words.
+1. For each problem, provide in more than 100 words, a short, high-level description of the problem;
+your approach to solve it; and any issues you encountered and if/how you managed to solve them.
 
-Problem 1 (Quadratic Equation): I had to change the order of the variables and if statements just so they would appear properly, but after that, it worked fine. 
+Problem 1 (Reverse): This program reads all of the strings from standard input and writes them back out in the opposite order, separated by spaces, with a newline after the last one. I read everything into a list using stdio.readAllStrings() and then reversed the list in place by swapping mirrored pairs: the element at index i trades places with the element at index n - i - 1, and the loop only runs for the first n // 2 positions so that no pair gets swapped twice. I ran into a few issues along the way. I originally put an extra list around the call to readAllStrings(), which created a list inside a list. I also copied values instead of actually swapping them, so elements were duplicated. Finally, I forgot the curly braces {} in my f-string, so it printed the literal text instead of the values. I fixed all three.
 
-Problem 2 (Wind Chill): Used my previously done wind chill equation and altered it to have control flow.
+Problem 2 (Euclidean Distance): This program takes n from the command line, reads two vectors of n floats each from standard input, and prints the Euclidean distance between them. My approach was to read the first n floats into a list x and the next n floats into a list y, then loop through both, square each difference, and add it to a running total. I only take the square root once at the end, after the whole sum is finished. The main issue I had was forgetting that sys.argv[1] is a string, which caused an error when I tried to use it as a number in range(), so I wrapped it in int(). I also had some floating-point trouble earlier, which I avoided by computing diff * diff directly instead of using a power operator.
 
-Problem 3 (Day of the Week): Used what I made last week and then added an if elif else branch to say the day of the week depending on the number it was. 
+Problem 3 (Birthday Problem): This program estimates the birthday problem. Given a number of trials from the command line, it simulates people entering a room one at a time with random birthdays until someone shares a birthday with a person already inside, then prints the average number of people needed across all trials, computed with integer division. I used a list of 365 booleans to remember which days were already taken, picking a random day for each new person and stopping the trial when that day was already marked. Each trial adds its count to a running total, and at the end I divide it by the number of trials using // as the spec requires. My average came out too low at first because I created the list of seen birthdays once outside the loop, so old birthdays carried over into later trials. Moving the reset inside the trial loop fixed it.
 
-Problem 4 (Six-sided Die): Wasn't too difficult, had an issue with the upper bound in the equation so I changed it to a 7 and then the rest was pretty easy, just trying to make it all line up (die faces)
+Problem 4 (Transpose): This program takes the number of rows m and columns n from the command line, reads an m by n matrix of floats from standard input, and prints its transpose. I stored the input in a 2D list a, where a[i][j] is the entry in row i and column j. Rather than building a second matrix, I print the transpose directly: the outer loop runs over the n rows of the output and the inner loop runs over the m columns, printing a[j][i] with spaces between entries and a newline at the end of each row. The issue I had was that my first version printed a[i][j], so the output matched the input exactly and nothing was transposed. Switching the indices to a[j][i] fixed it, and the output then had the correct n by m shape.
 
-Problem 5 (Playing Card): Had to change it to variable instead of just writeln, but after that the output looked good and printed out on the same line with spaces in between each word which was good
+Problem 5 (Pascal's Triangle): This program takes n from the command line and prints the first n + 1 rows of Pascal's triangle, one row per line. I build the triangle as a list of rows, where row i has i + 1 entries. Each row starts as all 1s, which takes care of the edges for free since the first and last entries of every row are always 1. Then I fill in the interior entries from the row above, setting each one to the sum of the two entries above it, triangle[i-1][j-1] + triangle[i-1][j]. For rows 0 and 1 the interior loop does nothing, which is correct. I finish by printing each row with spaces between entries. I did not run into any real issues with this one, since thinking through the edge entries first made the logic straightforward.
 
-Problem 6 (Dragon Curve): I started with "F", reversing and swapping the sequence
+Problem 6 (Generating the Waltz): This program generates a random waltz in the style of Mozart's dice game. It reads the minuet table (11 rows by 16 columns) and the trio table (6 rows by 16 columns) from mozart.txt as one stream of integers, then picks one measure number for each of the 16 positions in each part. For the minuet I roll two dice and add them, and for the trio I roll a single die, using the roll to choose a row in the table and the current measure as the column. The 32 chosen numbers are printed on one line. At first I got the wrong measures because I used the dice roll directly as the row index, but lists start at 0 while the rolls start at 2 for the minuet and 1 for the trio. Using roll - 2 for the minuet and roll - 1 for the trio fixed it.
 
-Problem 7 (Greatest Common Divisor): Had the hardest time with the equation, but once I figured it out, it worked out great, no issues.
+Problem 7 (Playing the Waltz): This program plays a waltz from 32 measure numbers read from standard input, where the first 16 are minuet measures from 1 to 176 and the last 16 are trio measures from 1 to 96. The key requirement is that no audio may play if the input is invalid, so I validate everything first and call sys.exit() with an error message on any problem, and only then play the minuet and trio files in order with stdaudio. I got an IndexError on short input because my range checks ran before I checked that there were exactly 32 numbers, so they tried to read entries that did not exist. Putting the length check first fixed it, since the later checks are only reached once the length is known to be correct.
 
-Problem 8 (Root Finding): Had to readjust the equations multiple times for them to work with no errors, so it took me a while and it was kind of difficult. However, the errors that popped up usually told me exactly what to fix.
-
-Problem 9 (Sum of Powers): Took me some time to think on the equation so it took me a few tries, but everything else wasn't so difficult once the sum value turned out okay. When I inputted the problems in the pdf and got the right answer, I was happy. 
-
-Problem 10 (Factorial Function): I used what I knew in the previous problem and just used * instead. Had to also differentiate between ni = 0 or ni = 1, so I just did an if and statement that seperated them but I don't think it works on negative numbers.
-
-Problem 11 (Fibonacci Function): Had to know what the Fibonnaci sequence was first, but after knowing that, it wasn't too bad for me. I just printed the result. It took me some time to understand what this sequence was in the first place but after i understood it was i + b = c, b + c = d, indefinitely it made it so much easier
-
-Problem 12 (Primality Test): Just needed to look up what makes a prime number, then made my own if elif equation based on that.
-
-Problem 13 (Counting Primes): It starts at 2, multiply j until you get to n. A prime number is a number that is divisible by 1 and itself. So I made it so that it would find the prime numbers in itself, and then print out how many of those there were. 
-
-Problem 14 (Perfect Numbers): Used pretty much the same logic and code from counting primes. I just changed it so it was perfect numbers instead of primes. 
-
-Problem 15 (Ramanujan Numbers): The TA helped a lot with this one, I had no clue what to really do until he explained. He helped with the starting part, and I was able to finish it on my own.
 
 2. Did you receive help from anyone? List their names, status (classmate, course staff, other), and
 the nature of help received.
 
 Name                   Status           Help Received
 ----                   ------           -------------
-TA                     Staff            Helped with problem 15's equation (loop)
+
 ...                    ...              ...
 
 3. List any other comments here. Feel free to provide any feedback on how much you learned from
 doing the assignment, and whether you enjoyed doing it.
-I learned a lot from the assignment, but I didn't really enjoy it. Some were numbers I didn't really know before so I had to do a lot of research if I didn't want to get help from the TA for it and tried to do it on my own. 
-I did understand the basic ideas of loops and control flow, but a lot of the things otherwise it was asking me for I didn't know anything about. 
+- I really enjoyed doing this assignment because I've never done a code that used an audio file that would play. It's the first time. So I think this might honestly be the coolest assignment I've done so far. 
+- I went out of my way to really try to understand because being able to use this, I think I might be able to make good frontend stuff with this. 
+- I kinda just wish it was actual python instead of stdio because that would be more realistic and versatile. it's kinda hard to switch from here to there. but the mindset is the same ofc
+- Had issues with submission, tried to rename the file because it said it didn't exist
