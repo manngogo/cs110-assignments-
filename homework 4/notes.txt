@@ -1,0 +1,33 @@
+1. For each problem, provide in no more than 100 words, a short, high-level description of the problem;
+your approach to solve it; and any issues you encountered and if/how you managed to solve them.
+
+Problem 1 (Reverse): Reverse a list in place, w/out creating a new list. I swap a[i] with a[n-1-i] for only the first n//2 indices, so the middle element of an odd-length list stays. Issue: my first version looped over all n indices, and the list came out unchanged bc every pair was swapped twice; limiting the loop to n//2 fixed it. I also tried a = a[::-1] first, but that builds a new list. I tested odd, even and empty input.
+
+Problem 2 (Euclidean Distance): Compute the distance between two vectors. I loop over the entries, add each squared difference to a running total, and take the square root once, after the loop. Issue: I first wrote x[i] - y[i] ** 2, which only squares y[i] because ** runs before subtraction; computing diff first and then diff * diff fixed it. I also first called math.sqrt inside the loop, which gave wrong answers; moving it after the loop fixed that
+
+Problem 3 (Transpose): Return a new matrix that is the transpose of a. I read m = len(a) rows and n = len(a[0]) columns, create an n-by-m matrix with stdarray.create2D, and set c[i][j] = a[j][i]. Issue: my first version used m for both loops. It passed on a 2-by-2 square matrix but crashed with an IndexError on a 2-by-3 input; looping i over n and j over m fixed it. I now test non-square inputs like 1-by-5.
+
+Problem 4 (Palindrome): Return True if a string reads the same forwards and backwards. I compare s[i] with its mirror s[n-1-i] for the first half of the string and return False at the first mismatch, otherwise True. Issue: I first put return True inside the loop, so 'abca' wrongly returned True after matching only the first pair; moving it after the loop fixed that. I also tested one-letter and empty strings, and an odd length like 'madam'.
+
+Problem 5 (Sine Function): Approximate sin(x) with the series x - x^3/3! + x^5/5! - ... Each term is built from the previous one by multiplying by -x^2/((2k)(2k+1)), so I never compute huge factorials or powers. I stop when a term no longer changes the sum. Issue: my first version used x**n divided by a factorial, which was slow and overflowed for big angles; the recurrence fixed it. Large angles like 1000 degrees stayed inaccurate until I reduced x to [-pi, pi] first.
+
+Problem 6 (RSA Library): Provides keygen, encrypt, decrypt and bit helpers. keygen picks two distinct random primes p and q, sets n = pq and m = (p-1)(q-1), picks a random prime e < m that does not divide m, and finds d with e*d mod m == 1. encrypt and decrypt use pow(x, e, n), which never builds huge numbers. Issue: my first keygen listed every prime below m and took 11 seconds for [1000, 3000); drawing random numbers until one is prime and does not divide m made it instant.
+
+Problem 7 (Keygen Program): Read lo and hi from the command line, call rsa.keygen, and print n, e and d separated by spaces. Issue: sys.argv values are strings, so passing them straight to rsa.keygen crashed inside range(); wrapping each in int() fixed it. I also first printed the whole tuple, which showed parentheses and commas, so I unpacked it into n, e and d and used stdio.writef with three %d to match the sample output exactly.
+
+Problem 8 (Encryption Program): Read the whole message, encrypt each character's code with the public key, and write each result in binary using the fixed width rsa.bitLength(n), so the decoder can split the stream without separators. Issue: I first padded each value to its own length, so short values made the decoder split the bits in the wrong places; the fixed width fixed it. readAll() keeps the final newline, so 'CS110' plus Enter gives 72 bits, matching the spec. n must exceed 127 for ASCII.
+
+Problem 9 (Decryption Program): Read the bit string, cut it into chunks of rsa.bitLength(n) bits, convert each chunk to an int, decrypt it with the private key, and write the matching character. Issue: readAllStrings() returns a list, so my slicing failed until I joined the tokens with "".join first. My first loop used range(len(bits)), which made overlapping chunks and garbled output; range(0, len(bits), width) fixed it. I checked a round trip on all four data files.
+
+2. Did you receive help from anyone? List their names, status (classmate, course staff, other), and
+the nature of help received.
+
+Name                   Status           Help Received
+----                   ------           -------------
+Discussion TA           TA              He helped me by going over the individual problems and answering my questions specifically in class
+...                    ...              ...
+
+3. List any other comments here. Feel free to provide any feedback on how much you learned from
+doing the assignment, and whether you enjoyed doing it.
+- I had a bit of a difficult time during this assignment because since some parts were already done, I was originally confused on how to begin and work with it the given code
+- I thought it was really cool that we coded a program and then were able to import it into a variety of other programs we coded. 
